@@ -6,8 +6,8 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
   labels:
     app.kubernetes.io/managed-by: argocd-autopilot
-    app.kubernetes.io/name: root_app
-  name: root_app
+    app.kubernetes.io/name: baseapp
+  name: baseapp
   namespace: argocd
 spec:
   destination:
@@ -21,7 +21,7 @@ spec:
   project: default
   source:
     path: appofapps
-    repoURL: https://github.com/alwesto/argo-test.git
+    repoURL: https://github.com/alwesto/argo-from-scratch.git
   syncPolicy:
     automated:
       allowEmpty: true
