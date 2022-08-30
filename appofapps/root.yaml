@@ -20,8 +20,8 @@ spec:
     kind: Application
   project: default
   source:
-    path: projects
-    repoURL: https://github.com/alwesto/argo-from-scratch.git
+    path: appofapps
+    repoURL: https://github.com/alwesto/argo-test.git
   syncPolicy:
     automated:
       allowEmpty: true
