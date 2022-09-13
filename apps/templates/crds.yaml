@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-apps
+  name: mab-apps
   namespace: argocd
 spec:
   destination:
@@ -23,7 +23,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-infra
+  name: mab-infra
   namespace: argocd
 spec:
   destination:
