@@ -1,0 +1,40 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-apps
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: argocd
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: argocd-example-apps
+    repoURL: https://github.com/alwesto/argo-from-scratch.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - test-values.yaml
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-infra
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: argocd
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: argocd-example-infra
+    repoURL: https://github.com/alwesto/argo-from-scratch.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - test-values.yaml
