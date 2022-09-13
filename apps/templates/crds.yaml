@@ -12,7 +12,7 @@ spec:
     automated:
       prune: true
   source:
-    path: argocd-example-apps
+    path: argocd-example-apps/
     repoURL: https://github.com/alwesto/argo-from-scratch.git
     targetRevision: HEAD
     helm:
@@ -32,7 +32,7 @@ spec:
     automated:
       prune: true
   source:
-    path: argocd-example-infra
+    path: argocd-example-infra/
     repoURL: https://github.com/alwesto/argo-from-scratch.git
     targetRevision: HEAD
     helm:
