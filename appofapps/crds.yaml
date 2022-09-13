@@ -1,0 +1,60 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: argocd
+spec:
+  description: project for management of Argo CD itself
+  # some of my apps within argocd project need to create cluster resources
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/stevesea/argocd-helm-app-of-apps-example.git
+  #
+  # lots of other repos here
+  #
+  - https://github.com/helm/charts.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-apps
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: argocd
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: argocd-example-apps
+    repoURL: https://github.com/stevesea/argocd-helm-app-of-apps-example.git
+    targetRevision: test
+    helm:
+      valueFiles:
+      - test-values.yaml
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-infra
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: argocd
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: argocd-example-infra
+    repoURL: https://github.com/stevesea/argocd-helm-app-of-apps-example.git
+    targetRevision: test
+    helm:
+      valueFiles:
+      - test-values.yaml

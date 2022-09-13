@@ -16,3 +16,13 @@ argocd proj create -f test.yaml
 # Create an app
 
 argocd app create -f root.yaml 
+
+# Create an app of apps
+
+argocd app create -f appofapps/mabapps.yaml 
+
+
+
+
+# Chart repo
+chart.yaml // umbrella
